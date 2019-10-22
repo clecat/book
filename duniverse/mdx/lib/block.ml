@@ -15,6 +15,7 @@
  *)
 
 open Astring
+open Result
 
 type section = int * string
 

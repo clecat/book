@@ -299,3 +299,10 @@
            ../bin/bin/app.exe
            ../book/toc.scm)
   (action  (run rwo-build build chapter -o . -repo-root .. %{x})))
+
+(alias (name pdf) (deps book.pdf))
+
+(rule
+  (targets book.pdf)
+  (deps    (alias ../book/latex) (:x ../static/latex/book.tex) ../book/classes.tex ../book/command-line-parsing.tex ../book/compiler-backend.tex ../book/compiler-frontend.tex ../book/concurrent-programming.tex ../book/data-serialization.tex ../book/error-handling.tex ../book/files-modules-and-programs.tex ../book/first-class-modules.tex ../book/foreign-function-interface.tex ../book/functors.tex ../book/garbage-collector.tex ../book/guided-tour.tex ../book/imperative-programming.tex ../book/json.tex ../book/lists-and-patterns.tex ../book/maps-and-hashtables.tex ../book/objects.tex ../book/parsing-with-ocamllex-and-menhir.tex ../book/ppx.tex ../book/prologue.tex ../book/records.tex ../book/runtime-memory-layout.tex ../book/variables-and-functions.tex ../book/variants.tex)
+  (action  (system "pdflatex -interaction=nonstopmode %{x} || true")))

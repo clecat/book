@@ -33,7 +33,7 @@
      ((name variantslib)) ((name yojson)) ((name zarith))))
    (excludes (((name rwo))))
    (pins
-    (((pin mdx) (url (https://github.com/Julow/mdx.git))
+    (((pin mdx) (url (https://github.com/clecat/mdx.git))
       (tag (duniverse_mode)))))
    (remotes (git://github.com/dune-universe/opam-overlays.git))
    (branch master)))
@@ -204,9 +204,9 @@
      ((dir markup) (upstream https://github.com/aantron/markup.ml.git)
       (ref ((t 0.8.1) (commit ea68bebf5c3a19f56350393e359d444f864154e3)))
       (provided_packages (((name markup) (version (0.8.1))))))
-     ((dir mdx) (upstream https://github.com/Julow/mdx.git)
+     ((dir mdx) (upstream https://github.com/clecat/mdx.git)
       (ref
-       ((t duniverse_mode) (commit 2da82eaba335e25836da30c919d6a93fcfa3866a)))
+       ((t duniverse_mode) (commit a09e234c253cf74af81cae386c14eae3e473f29c)))
       (provided_packages (((name mdx) (version (dev))))))
      ((dir mmap) (upstream https://github.com/mirage/mmap.git)
       (ref ((t v1.1.0) (commit 46f613db11c00667764523ccbb3d63e53e1c666c)))

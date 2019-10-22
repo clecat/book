@@ -1,3 +1,5 @@
+open Result
+
 type t =
   { base_name : string
   ; sub_lib : string option
@@ -40,7 +42,5 @@ module Set = struct
   end)
 
   let to_package_set t =
-    to_seq t
-    |> Seq.map (fun t -> t.base_name)
-    |> Astring.String.Set.of_seq
+    fold (fun t acc -> Astring.String.Set.add t.base_name acc) t Astring.String.Set.empty
 end

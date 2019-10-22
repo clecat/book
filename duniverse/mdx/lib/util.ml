@@ -1,3 +1,5 @@
+open Result
+
 module Result = struct
   module List = struct
     open Rresult.R.Infix

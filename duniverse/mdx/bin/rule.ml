@@ -15,6 +15,7 @@
  *)
 
 open Astring
+open Result
 
 let src = Logs.Src.create "cram.rule"
 

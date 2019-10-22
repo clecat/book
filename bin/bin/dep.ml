@@ -78,6 +78,16 @@ let dune_for_chapter file =
   (action  (run rwo-build build chapter -o . -repo-root .. %%{x})))|}
     file file file toc_file
 
+let dune_for_pdf files =
+  let files = List.map (fun file -> "../book/" ^ (Filename.remove_extension file) ^ ".tex") files in
+  sprintf {|(alias (name pdf) (deps book.pdf))
+
+(rule
+  (targets book.pdf)
+  (deps    (alias ../book/latex) (:x ../static/latex/book.tex) %s)
+  (action  (system "pdflatex -interaction=nonstopmode %%{x} || true")))|}
+    (String.concat " " files)
+
 let read_toc base_dir =
   let f = base_dir / toc_file in
   let s = Sexplib.Sexp.load_sexps f in
@@ -128,7 +138,8 @@ let process_chapters ~toc book_dir output_dir =
     List.filter ((<>)"")
   in
   let chapters = List.map dune_for_chapter (toc_files toc) in
-  html @ chapters |>
+  let pdf = dune_for_pdf (toc_files toc) in
+  html @ chapters @ [pdf] |>
   String.concat "\n\n" |> fun s ->
   find_static_files () ^ s  ^ "\n" |>
   emit_file (output_dir / "dune")
@@ -141,15 +152,28 @@ let process_md ~toc book_dir =
     let toc = String.concat "\n        " toc in
     sprintf "(alias\n  (name html)\n  (deps %s))" toc
   in
+  let latex_alias =
+    let file f = f ^ ".tex" in
+    let toc = List.map file toc in
+    let toc = String.concat "\n        " toc in
+    sprintf "(alias\n  (name latex)\n  (deps %s))" toc
+  in
   let main_dune () =
     List.map (fun chapter ->
-        let html = chapter ^ ".html" in
-        sprintf {|(rule
-  (targets %s)
+        sprintf
+{|(rule
+  (targets %s.html)
   (deps    %s)
-  (action  (run mdx output %%{deps} -o %%{targets})))|}
-          html (chapter / "README.md")
+  (action  (run mdx output %%{deps} -t html -o %%{targets})))
+
+(rule
+  (targets %s.tex)
+  (deps    %s)
+  (action  (run mdx output %%{deps} -t latex -o %%{targets})))|}
+          chapter (chapter / "README.md")
+          chapter (chapter / "README.md")
       ) toc |>
+    (fun x -> latex_alias :: x) |>
     (fun x -> html_alias :: x) |>
     String.concat "\n\n" |>
     (fun x -> x ^ "\n") |>
