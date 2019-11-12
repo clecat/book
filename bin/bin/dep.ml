@@ -84,7 +84,7 @@ let dune_for_pdf files =
 
 (rule
   (targets book.pdf)
-  (deps    (alias ../book/latex) (:x ../static/latex/book.tex) %s)
+  (deps    (alias ../book/latex) (:x ../static/latex/book.tex) ../static/latex/content.tex %s)
   (action  (system "pdflatex -interaction=nonstopmode %%{x} || true")))|}
     (String.concat " " files)
 

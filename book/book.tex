@@ -78,6 +78,26 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
 \usepackage{listings, pmboxdraw}
+\lstset{
+  literate=
+  {á}{{\'a}}1
+  {é}{{\'e}}1
+  {ô}{{\^o}}1
+  {┌}{\textSFi}1%
+  {┐}{\textSFiii}1%
+  {└}{\textSFii}1%
+  {┘}{\textSFiv}1%
+  {┬}{\textSFvi}1%
+  {┴}{\textSFvii}1%
+  {├}{\textSFviii}{1}%
+  {┤}{\textSFix}{1}%
+  {─}{\textSFx}1%
+  {—}{\textSFx}1%
+  {│}{\textSFxi}1%
+  {┼}{\textSFv}1%
+}
+
+\DeclareUnicodeCharacter{2005}{\hspace{0,25em}}
 \newcommand{\passthrough}[1]{#1}
 \lstset{defaultdialect=[5.3]Lua}
 \lstset{defaultdialect=[x86masm]Assembler}
@@ -95,60 +115,21 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \hfuzz=250pt
+\usepackage{makeidx}
+\makeindex
+\renewcommand*\contentsname{Table of content}
 
+\title{%
+  Real World Ocaml \\
+  \large Version 2, PDF edition bob (WIP)}
 \date{}
+\author{Yaron Minsky, Anil Madhavapeddy, Jason Hickey}
 
 \begin{document}
 
-\input{../book/classes.tex}
-\newpage
-\input{../book/command-line-parsing.tex}
-\newpage
-\input{../book/compiler-backend.tex}
-\newpage
-\input{../book/compiler-frontend.tex}
-\newpage
-\input{../book/concurrent-programming.tex}
-\newpage
-\input{../book/data-serialization.tex}
-\newpage
-\input{../book/error-handling.tex}
-\newpage
-\input{../book/files-modules-and-programs.tex}
-\newpage
-\input{../book/first-class-modules.tex}
-\newpage
-\input{../book/foreign-function-interface.tex}
-\newpage
-\input{../book/functors.tex}
-\newpage
-\input{../book/garbage-collector.tex}
-\newpage
-\input{../book/guided-tour.tex}
-\newpage
-\input{../book/imperative-programming.tex}
-\newpage
-\input{../book/json.tex}
-\newpage
-\input{../book/lists-and-patterns.tex}
-\newpage
-\input{../book/maps-and-hashtables.tex}
-\newpage
-\input{../book/objects.tex}
-\newpage
-\input{../book/parsing-with-ocamllex-and-menhir.tex}
-\newpage
-\input{../book/ppx.tex}
-\newpage
-\input{../book/prologue.tex}
-\newpage
-\input{../book/records.tex}
-\newpage
-\input{../book/runtime-memory-layout.tex}
-\newpage
-\input{../book/variables-and-functions.tex}
-\newpage
-\input{../book/variants.tex}
-\newpage
+\maketitle
+
+\tableofcontents
+\input{content.tex}
 
 \end{document}

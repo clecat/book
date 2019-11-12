@@ -120,7 +120,7 @@ let pp_text_latex ppf l =
         | None -> t::acc
         | Some j ->
           let b = String.sub ~stop:j t |> String.Sub.to_string in
-          let m = String.sub ~start:(j + 1) ~stop:i t |> String.Sub.to_string |> Fmt.strf "\\ref{%s}" in
+          let m = String.sub ~start:(j + 1) ~stop:i t |> String.Sub.to_string |> Fmt.strf "\\index{%s}" in
           let e = String.sub ~start:(i + 7) t |> String.Sub.to_string in
           f b (m::e::acc)
       end
