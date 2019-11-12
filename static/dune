@@ -311,7 +311,7 @@
   (deps    (alias ../book/latex)
            (:x ../book/book.tex)
            content.tex)
-  (action  (system "pdflatex -interaction=nonstopmode %{x}")))
+  (action  (system "pdflatex -interaction=nonstopmode %{x} -draftmode")))
 
 (alias (name pdf) (deps book.pdf))
 
