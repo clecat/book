@@ -206,7 +206,7 @@
       (provided_packages (((name markup) (version (0.8.1))))))
      ((dir mdx) (upstream https://github.com/clecat/mdx.git)
       (ref
-       ((t duniverse_mode) (commit a09e234c253cf74af81cae386c14eae3e473f29c)))
+       ((t duniverse_mode) (commit 96fa56128e03c43cc2d99fde589c1d064ce8d36e)))
       (provided_packages (((name mdx) (version (dev))))))
      ((dir mmap) (upstream https://github.com/mirage/mmap.git)
       (ref ((t v1.1.0) (commit 46f613db11c00667764523ccbb3d63e53e1c666c)))
